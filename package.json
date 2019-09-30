@@ -1,0 +1,11 @@
+{
+  "name": "expressts-graphql",
+  "version": "1.0.0",
+  "description": "API server built using TypeScript with GraphQL",
+  "main": "dist",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "GeekRishabh | GeekyAnts <geekrishabh@gmail.com>",
+  "license": "ISC"
+}
