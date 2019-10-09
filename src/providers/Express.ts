@@ -4,7 +4,7 @@
  * @author Rishabh Pandey <geekrishabh@gmail.com>
  */
 
-import * as express from 'express';
+import express from 'express';
 
 import Locals from './Locals';
 

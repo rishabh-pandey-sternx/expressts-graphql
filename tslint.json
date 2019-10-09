@@ -2,7 +2,6 @@
   "rules": {
     "class-name": true,
     "comment-format": [true, "check-space"],
-    "indent": [true, "tabs"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "no-duplicate-variable": true,
