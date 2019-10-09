@@ -15,12 +15,10 @@ class Locals {
    */
   public static config(): any {
     dotenv.config({ path: path.join(__dirname, '../../.env') });
-
     const url = process.env.APP_URL || `http://localhost:${process.env.PORT}`;
     const port = process.env.PORT || 4040;
     const appSecret = process.env.APP_SECRET || 'ThisIsYourResponsibility!';
     const mongooseUrl = process.env.MONGOOSE_URL;
-    const maxUploadLimit = process.env.APP_MAX_UPLOAD_LIMIT || '50mb';
     const maxParameterLimit = process.env.APP_MAX_PARAMETER_LIMIT || 5000;
 
     const name = process.env.APP_NAME || 'Express API Server';
@@ -37,7 +35,6 @@ class Locals {
       isCORSEnabled,
       jwtExpiresIn,
       logDays,
-      maxUploadLimit,
       maxParameterLimit,
       mongooseUrl,
       name,

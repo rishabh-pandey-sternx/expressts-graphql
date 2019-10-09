@@ -1,9 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es6", // es-tspm package currently supports ^es2018
     "module": "commonjs",
     "outDir": "dist/",
-    "sourceMap": true
+    "moduleResolution": "node",
+    "sourceMap": true, // es-tspm distorts source mappings, so there is no use
+    "declaration": false,
+    "declarationMap": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true, // Typegoose, TypeGraphQL requirement
+    /* Misc */
+    "alwaysStrict": true,
+    "pretty": true
   },
   "files": [
     // "./node_modules/@types/node/index.d.ts",
@@ -14,5 +24,5 @@
     "./node_modules/@types/express-session/index.d.ts"
   ],
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "typings"]
+  "exclude": ["node_modules", "typings", "dist"]
 }

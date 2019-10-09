@@ -1,14 +1,10 @@
 {
   "rules": {
     "class-name": true,
-    "comment-format": [
-      true,
-      "check-space"
-    ],
-    "indent": [
-      true,
-      "tabs"
-    ],
+    "comment-format": [true, "check-space"],
+    "indent": [true, "tabs"],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "no-duplicate-variable": true,
     "no-eval": true,
     "no-internal-module": true,
@@ -22,18 +18,9 @@
       "check-open-brace",
       "check-whitespace"
     ],
-    "quotemark": [
-      true,
-      "single"
-    ],
-    "semicolon": [
-      true,
-      "always"
-    ],
-    "triple-equals": [
-      true,
-      "allow-null-check"
-    ],
+    "quotemark": [true, "single"],
+    "semicolon": [true, "always"],
+    "triple-equals": [true, "allow-null-check"],
     "typedef-whitespace": [
       true,
       {
@@ -51,10 +38,7 @@
         "variable-declaration": "onespace"
       }
     ],
-    "variable-name": [
-      true,
-      "ban-keywords"
-    ],
+    "variable-name": [true, "ban-keywords"],
     "whitespace": [
       true,
       "check-branch",
@@ -65,10 +49,7 @@
     ],
     "jsdoc-format": true,
     "no-consecutive-blank-lines": true,
-    "one-variable-per-declaration": [
-      true,
-      "ignore-for-loop"
-    ],
+    "one-variable-per-declaration": [true, "ignore-for-loop"],
     "curly": true,
     "no-empty": true,
     "no-unused-expression": true,
@@ -80,10 +61,6 @@
         "multiline": "never"
       }
     ],
-    "align": [
-      true,
-      "parameters",
-      "statements"
-    ]
+    "align": [true, "parameters", "statements"]
   }
 }
