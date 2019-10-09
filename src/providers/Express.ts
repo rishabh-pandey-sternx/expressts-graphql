@@ -5,7 +5,7 @@
  */
 
 import express from 'express';
-
+import Routes from './Routes';
 import Locals from './Locals';
 
 class Express {
@@ -21,10 +21,18 @@ class Express {
     this.express = express();
 
     this.mountDotEnv();
+    this.mountRoutes();
   }
 
   private mountDotEnv(): void {
     this.express = Locals.init(this.express);
+  }
+
+  /**
+   * Mounts all the defined routes
+   */
+  private mountRoutes(): void {
+    this.express = Routes.mountApi(this.express);
   }
 
   /**
