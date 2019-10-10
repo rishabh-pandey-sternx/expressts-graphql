@@ -3,6 +3,12 @@
 package-lock.json
 yarn.lock
 
+
+# Workflow
+github
+.github
+*.github
+
 # Logs
 logs
 *.log
