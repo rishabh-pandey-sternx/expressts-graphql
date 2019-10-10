@@ -12,8 +12,7 @@ import schema from '../schemas/Schema';
 
 import apiRouter from './../routes/Api';
 import JwtLib from '../services/JwtLib';
-import publicUserResolvers from '../resolvers/PublicResolver';
-import userResolvers from '../resolvers/User';
+import Resolvers from '../resolvers';
 
 class Routes {
   public mountApi(_express: Application): Application {
@@ -28,7 +27,7 @@ class Routes {
       introspection: true,
       playground: true,
       typeDefs: schema,
-      resolvers: userResolvers,
+      resolvers: Resolvers,
       formatError: error => {
         // remove the internal Mongo error message
         // leave only the important validation error
