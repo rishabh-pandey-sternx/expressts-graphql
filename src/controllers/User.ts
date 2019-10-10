@@ -9,6 +9,7 @@ import { AuthenticationError, UserInputError } from 'apollo-server';
 import UserModel from '../models/User';
 import { IUser } from '../interfaces/models/User';
 import { IRequest, IResponse } from '../interfaces/vendors';
+import jwtLib from '../services/JwtLib';
 
 class UserController {
   /**
@@ -37,7 +38,8 @@ class UserController {
       });
 
       const result = await newUser.save();
-      response = { ...result._doc, token: 'lnk', password: null };
+      const token = jwtLib.signIn(req.user.email, req.user.password, result.id);
+      response = { ...result._doc, token, password: null };
       return response;
     } catch (error) {
       throw new Error(error);
@@ -64,8 +66,8 @@ class UserController {
       if (!passwordIsValid) {
         throw new AuthenticationError('Invalid password.');
       }
-      // const token = jwtLib.signIn(user.email, req.password, user.id);
-      response = { token: 'jkj', password: null, ...user._doc };
+      const token = jwtLib.signIn(user.email, req.password, user.id);
+      response = { token, password: null, ...user._doc };
       return response;
     } catch (err) {
       throw new Error(err);
