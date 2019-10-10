@@ -8,9 +8,10 @@ import { Application } from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import Locals from './Locals';
 import Log from '../middlewares/Log';
-import schema from '../schemas/PublicSchema';
+import schema from '../schemas/Schema';
 
 import apiRouter from './../routes/Api';
+import JwtLib from '../services/JwtLib';
 import publicUserResolvers from '../resolvers/PublicResolver';
 import userResolvers from '../resolvers/User';
 
@@ -38,6 +39,14 @@ class Routes {
         return {
           ...error,
           message
+        };
+      },
+      context: ({ req }) => {
+        const token = JwtLib.tokenFromHeaders(req);
+        const user = JwtLib.decode(token);
+        console.log(user, 'user');
+        return {
+          user
         };
       }
     });

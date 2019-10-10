@@ -1,23 +1,27 @@
+import { AuthenticationError } from 'apollo-server';
 import UserController from '../controllers/User';
-import { Query } from '@google-cloud/firestore';
 
 const userResolvers = {
   Mutation: {
     // Logging In A User
     login: async (parent, args, context, info) => {
-      const user = await UserController.login(args);
-      return user;
+      await UserController.login(args);
     },
     // Store Details Of New User
     signUp: async (parent, args, context, info) => {
-      const value = await UserController.register(args);
-      return value;
+      await UserController.register(args);
+    },
+    // Update User's Profile
+    updateProfile: async (parent, args, context, info) => {
+      if (!context.user) {
+        throw new AuthenticationError('Not Authenticated');
+      }
+      return await UserController.update(args);
     }
-    // Update User's Profilexw
-    // updateProfile: UserController.update
   },
   Query: {
     dummy: (parent, args, context, info) => {
+      console.log(context.user, 'context');
       return { name: args.name, age: 23, profession: 'Dev', text: 'Hello' };
     }
   }

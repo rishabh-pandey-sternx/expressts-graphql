@@ -6,7 +6,4 @@
 
 import { Request } from 'express';
 
-export interface IRequest extends Request {
-  user?: object;
-  todo?: object;
-}
+export interface IRequest extends Request {}

@@ -56,16 +56,20 @@ class UserController {
     let response: object = {};
     try {
       const user = await UserModel.findOne({ email: req.email });
+
       if (!user) {
         throw new UserInputError('No user found with this login credentials.');
       }
+
       const passwordIsValid = await bcrypt.compareSync(
         req.password,
         user.password
       );
+
       if (!passwordIsValid) {
         throw new AuthenticationError('Invalid password.');
       }
+
       const token = jwtLib.signIn(user.email, req.password, user.id);
       response = { token, password: null, ...user._doc };
       return response;
@@ -82,8 +86,7 @@ class UserController {
 
   public static async getUserById(id): Promise<IUser | Error> {
     try {
-      const result = await UserModel.findById(id);
-      return result;
+      return await UserModel.findById(id);
     } catch (error) {
       throw new Error(error);
     }
@@ -110,7 +113,20 @@ class UserController {
    * @param req
    * @returns {any}
    */
-  public static update(req: IRequest, res: IResponse): any {}
+  public static async update(req: IRequest): Promise<IUser | Error> {
+    try {
+      return await UserModel.findOneAndUpdate(
+        { email: req.user.email },
+        {
+          fullname: req.user.fullname || null,
+          deviceId: req.user.deviceId || null,
+          gender: req.user.gender || null
+        }
+      );
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }
 
 export default UserController;
