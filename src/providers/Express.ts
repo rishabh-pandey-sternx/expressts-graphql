@@ -4,7 +4,7 @@
  * @author Rishabh Pandey <geekrishabh@gmail.com>
  */
 
-import express from 'express';
+import express, { Router } from 'express';
 import Routes from './Routes';
 import Locals from './Locals';
 
@@ -40,6 +40,11 @@ class Express {
    */
   public init(): any {
     const port: number = Locals.config().port;
+
+    // Mounting ApolloServer for Graphql
+    const server = Routes.mount();
+    const path = '/graphql';
+    server.applyMiddleware({ app: this.express, path });
 
     // Start the server on the specified port
     this.express.listen(port, (_error: any) => {
