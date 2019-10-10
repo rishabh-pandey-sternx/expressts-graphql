@@ -37,6 +37,15 @@ export class UserType extends Typegoose implements Credentials {
   @prop({ required: true, index: true, unique: true })
   email!: string;
 
+  @prop()
+  fullname: string;
+
+  @prop()
+  gender: string;
+
+  @prop()
+  deviceId: string;
+
   @prop({ required: true, default: Date.now })
   created_at!: Date;
 
@@ -71,7 +80,7 @@ export class UserType extends Typegoose implements Credentials {
 
 export const UserModel = new UserType().getModelForClass(UserType, {
   existingMongoose: mongoose,
-  schemaOptions: { collection: 'rishabhs' }
+  schemaOptions: { collection: 'Users' }
 });
 
 export default UserModel;

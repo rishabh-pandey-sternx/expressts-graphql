@@ -8,10 +8,12 @@ import { Application } from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import Locals from './Locals';
 import Log from '../middlewares/Log';
-import typeDefs = require('../schemas/schema');
+// import typeDefs = require('../schemas/schema');
+import schema from '../schemas/PublicSchema';
 
 import apiRouter from './../routes/Api';
-// import graphQLRouter from './../routes/GraphQL';
+import publicUserResolvers from '../resolver/PublicResolver';
+import userResolvers from '../resolver/User';
 
 class Routes {
   public mountApi(_express: Application): Application {
@@ -23,16 +25,21 @@ class Routes {
 
   public mount() {
     const server = new ApolloServer({
-      typeDefs,
-      resolvers: {
-        Query: {
-          greeting: (_, { name }) => ({
-            name,
-            age: 99,
-            profession: 'Software Engineer',
-            text: 'How are you today?'
-          })
-        }
+      introspection: true,
+      playground: true,
+      typeDefs: schema,
+      resolvers: userResolvers,
+      formatError: error => {
+        // remove the internal Mongo error message
+        // leave only the important validation error
+        const message = error.message
+          .replace('MongoValidationError: ', '')
+          .replace('Validation error: ', '');
+
+        return {
+          ...error,
+          message
+        };
       }
     });
 

@@ -4,6 +4,7 @@
     "module": "commonjs",
     "outDir": "dist/",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "sourceMap": true, // es-tspm distorts source mappings, so there is no use
     "declaration": false,
     "declarationMap": false,

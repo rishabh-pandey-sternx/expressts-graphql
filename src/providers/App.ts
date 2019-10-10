@@ -4,6 +4,7 @@ import * as dotenv from 'dotenv';
 import Express from './Express';
 import Log from '../middlewares/Log';
 import * as Database from './Database';
+import * as FirebaseAuth from './Firebase';
 
 class App {
   // clear out the console
@@ -31,6 +32,13 @@ class App {
 
     Database.Database.init();
   }
+
+  // Loads the Firebase
+  // public loadFirebase(): void {
+  //   Log.info('Fireabse :: Booting @ Master...');
+
+  //   FirebaseAuth.init();
+  // }
 }
 
 export default new App();
