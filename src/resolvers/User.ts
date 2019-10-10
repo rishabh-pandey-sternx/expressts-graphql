@@ -1,4 +1,5 @@
 import UserController from '../controllers/User';
+import { Query } from '@google-cloud/firestore';
 
 const userResolvers = {
   Mutation: {
@@ -14,6 +15,11 @@ const userResolvers = {
     }
     // Update User's Profilexw
     // updateProfile: UserController.update
+  },
+  Query: {
+    dummy: (parent, args, context, info) => {
+      return { name: args.name, age: 23, profession: 'Dev', text: 'Hello' };
+    }
   }
 };
 

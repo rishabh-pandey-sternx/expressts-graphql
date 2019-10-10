@@ -11,8 +11,8 @@ import Log from '../middlewares/Log';
 import schema from '../schemas/PublicSchema';
 
 import apiRouter from './../routes/Api';
-import publicUserResolvers from '../resolver/PublicResolver';
-import userResolvers from '../resolver/User';
+import publicUserResolvers from '../resolvers/PublicResolver';
+import userResolvers from '../resolvers/User';
 
 class Routes {
   public mountApi(_express: Application): Application {

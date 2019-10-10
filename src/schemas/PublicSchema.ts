@@ -1,4 +1,3 @@
-import { buildSchema } from 'graphql';
 import { gql } from 'apollo-server-express';
 
 export default gql`
@@ -10,19 +9,12 @@ export default gql`
     deviceId: String
     gender: String
   }
-  type Query {
-    _: Boolean
-  }
-  type Mutation {
-    _: Boolean
-  }
+
   type SingUpResult {
     email: String!
     fullname: String!
     deviceId: String
     gender: String
-    website: String
-    profile_url: String
     token: String!
   }
 
@@ -31,8 +23,6 @@ export default gql`
     fullname: String!
     deviceId: String
     gender: String
-    website: String
-    profile_url: String
     token: String
   }
 
@@ -43,11 +33,11 @@ export default gql`
     text: String
   }
 
-  extend type Query {
+  type Query {
     dummy(name: String): Greeting
   }
 
-  extend type Mutation {
+  type Mutation {
     signUp(user: UserInfo): SingUpResult
     login(email: String!, password: String!): LoginResult
   }

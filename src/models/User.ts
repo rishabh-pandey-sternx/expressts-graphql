@@ -37,13 +37,13 @@ export class UserType extends Typegoose implements Credentials {
   @prop({ required: true, index: true, unique: true })
   email!: string;
 
-  @prop()
+  @prop({ default: null })
   fullname: string;
 
-  @prop()
+  @prop({ default: 'Male' })
   gender: string;
 
-  @prop()
+  @prop({ default: null })
   deviceId: string;
 
   @prop({ required: true, default: Date.now })

@@ -5,8 +5,9 @@
  */
 
 export enum Completed {
-  Active = 'Active',
-  InActive = 'InActive'
+  InProgress = 'IN_PROGRESS',
+  Complted = 'COMPLETED',
+  Pending = 'PENDING'
 }
 
 export interface ITodo {
