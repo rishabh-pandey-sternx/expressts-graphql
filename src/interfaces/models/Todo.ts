@@ -17,4 +17,6 @@ export interface ITodo {
   collaborater_ids?: [string];
 }
 
+export interface ITodoNull {}
+
 export default ITodo;

@@ -22,8 +22,8 @@ export class TodoType extends Typegoose {
   @prop({ required: true, enum: ['PENDING', 'COMPLETED', 'IN_PROGRESS'] })
   completed!: Completed;
 
-  @prop({ required: true, ref: UserModel })
-  owner_id: string;
+  @prop({ required: false, ref: UserModel })
+  owner_id!: string;
 
   @prop({ default: null })
   collaborater_ids: [string];

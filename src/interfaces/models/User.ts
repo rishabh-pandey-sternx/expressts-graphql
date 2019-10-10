@@ -11,5 +11,6 @@ export interface IUser {
   fullname: string;
   gender: string;
 }
+export interface IUserNull {}
 
 export default IUser;

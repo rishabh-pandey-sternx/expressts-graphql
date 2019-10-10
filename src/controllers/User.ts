@@ -7,7 +7,7 @@
 import * as bcrypt from 'bcrypt';
 import { AuthenticationError, UserInputError } from 'apollo-server';
 import UserModel from '../models/User';
-import { IUser } from '../interfaces/models/User';
+import { IUser, IUserNull } from '../interfaces/models/User';
 import { IRequest, IResponse } from '../interfaces/vendors';
 import jwtLib from '../services/JwtLib';
 
@@ -87,6 +87,20 @@ class UserController {
   public static async getUserById(id): Promise<IUser | Error> {
     try {
       return await UserModel.findById(id);
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  /**
+   * Get All users
+   * @param req
+   * @returns {Promise<*>}
+   */
+
+  public static async getAll(): Promise<[IUser] | IUserNull | Error> {
+    try {
+      return await UserModel.find();
     } catch (error) {
       throw new Error(error);
     }

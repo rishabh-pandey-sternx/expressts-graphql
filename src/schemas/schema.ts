@@ -56,7 +56,6 @@ export default gql`
   input TodoInput {
     title: String!
     completed: CompletedEnum
-    owner_id: ID
     collaborater_ids: [ID]
   }
 

@@ -43,7 +43,6 @@ class Routes {
       context: ({ req }) => {
         const token = JwtLib.tokenFromHeaders(req);
         const user = JwtLib.decode(token);
-        console.log(user, 'user');
         return {
           user
         };
