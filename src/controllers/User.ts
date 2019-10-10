@@ -8,6 +8,7 @@ import * as bcrypt from 'bcrypt';
 import { AuthenticationError, UserInputError } from 'apollo-server';
 import UserModel from '../models/User';
 import { IUser } from '../interfaces/models/User';
+import { IRequest, IResponse } from '../interfaces/vendors';
 
 class UserController {
   /**
@@ -16,7 +17,7 @@ class UserController {
    * @returns {Promise<IUser | Error> }
    */
 
-  public static async register(req): Promise<IUser | Error> {
+  public static async register(req: IRequest): Promise<IUser | Error> {
     let response: object = {};
     try {
       const user = await UserModel.findOne({
@@ -49,7 +50,7 @@ class UserController {
    * @returns {Promise<IUser | Error>}
    */
 
-  public static async login(req): Promise<IUser | Error> {
+  public static async login(req: IRequest): Promise<IUser | Error> {
     let response: object = {};
     try {
       const user = await UserModel.findOne({ email: req.email });
@@ -92,7 +93,7 @@ class UserController {
    * @returns {any}
    */
 
-  public static resetPassword(req, res): any {}
+  public static resetPassword(req: IRequest, res: IResponse): any {}
 
   /**
    * Change Password
@@ -100,14 +101,14 @@ class UserController {
    * @returns {any}
    */
 
-  public static changePassword(req, res): any {}
+  public static changePassword(req: IRequest, res: IResponse): any {}
 
   /**
    * Update The Details Of User
    * @param req
    * @returns {any}
    */
-  public static update(req, res): any {}
+  public static update(req: IRequest, res: IResponse): any {}
 }
 
 export default UserController;

@@ -38,7 +38,7 @@ class Express {
   /**
    * Starts the express server
    */
-  public init(): any {
+  public init(): void {
     const port: number = Locals.config().port;
 
     // Mounting ApolloServer for Graphql

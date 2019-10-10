@@ -8,7 +8,6 @@ import { Application } from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import Locals from './Locals';
 import Log from '../middlewares/Log';
-// import typeDefs = require('../schemas/schema');
 import schema from '../schemas/PublicSchema';
 
 import apiRouter from './../routes/Api';
@@ -23,7 +22,7 @@ class Routes {
     return _express.use(`/${apiPrefix}`, apiRouter);
   }
 
-  public mount() {
+  public mount(): Application {
     const server = new ApolloServer({
       introspection: true,
       playground: true,
