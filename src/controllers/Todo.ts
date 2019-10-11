@@ -4,6 +4,7 @@
  * @author Rishabh Pandey <geekrishabh@gmail.com>
  */
 
+import mongoose from 'mongoose';
 import TodoModel from '../models/Todo';
 import { IRequest } from '../interfaces/vendors';
 import { ITodo, ITodoNull } from './../interfaces/models/Todo';
@@ -86,9 +87,15 @@ class TodoController {
    * @returns {Promise<[ITodo] | ITodoNull | Error>}
    */
 
-  public static async getMine(user): Promise<[ITodo] | ITodoNull | Error> {
+  public static async getMine(
+    req: IRequest
+  ): Promise<[ITodo] | ITodoNull | Error> {
     try {
-      return await TodoModel.find({ owner_id: user.id });
+      const getMine = await TodoModel.find({
+        owner_id: mongoose.Types.ObjectId(req.id)
+      });
+      console.log(getMine, mongoose.Types.ObjectId(req.id), 'req');
+      return getMine;
     } catch (error) {
       throw new Error(error);
     }
@@ -100,10 +107,12 @@ class TodoController {
    * @returns {Promise<[ITodo] | ITodoNull | Error>}
    */
 
-  public static async getAllMine(user): Promise<[ITodo] | ITodoNull | Error> {
+  public static async getAllMine(
+    req: IRequest
+  ): Promise<[ITodo] | ITodoNull | Error> {
     try {
       return await TodoModel.find({
-        $or: [{ owner_id: user.id }, { collaborater_ids: user.id }]
+        $or: [{ owner_id: req.id }, { collaborater_ids: req.id }]
       });
     } catch (error) {
       throw new Error(error);

@@ -2,8 +2,7 @@ const axios = require('axios');
 // const URL = 'http://localhost:4040/graphql';
 
 function userQuery() {
-  describe('Category resolvers work as intended', () => {
-    console.log(process.env.Authorization, 'process.env.Authorization');
+  describe('User Query', () => {
     test('Get all users', async () => {
       const foundUsers = await axios.post(
         `http://localhost:4040/graphql`,
@@ -31,4 +30,4 @@ function userQuery() {
   });
 }
 
-module.export = userQuery();
+module.exports = userQuery();

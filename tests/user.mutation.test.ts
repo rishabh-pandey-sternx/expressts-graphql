@@ -40,6 +40,7 @@ function userMutation() {
         }`
       });
       const { data } = newUser;
+      process.env.Authorization = `Bearer ${data.data['login']['token']}`;
       expect(data).toMatchObject({
         data: {
           login: {
@@ -51,7 +52,6 @@ function userMutation() {
     });
 
     test('Update user profile', async () => {
-      console.log(process.env.Authorization, 'process.env.Authorization');
       const updateProfile = await axios.post(
         `http://localhost:4040/graphql`,
         {

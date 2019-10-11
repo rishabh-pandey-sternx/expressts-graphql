@@ -114,7 +114,7 @@ const Resolvers = {
           'Not Authenticated Please Provide Authorization Token'
         );
       }
-      await TodoController.getMine(args);
+      return await TodoController.getMine(context.user);
     },
     // gets all todos of the authenticated  user
     allMyTodos: async (parent, args, context, info) => {
@@ -123,7 +123,7 @@ const Resolvers = {
           'Not Authenticated Please Provide Authorization Token'
         );
       }
-      await TodoController.getAllMine(args);
+      return await TodoController.getAllMine(context.user);
     }
   }
 };
