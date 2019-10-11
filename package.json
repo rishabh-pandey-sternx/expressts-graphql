@@ -4,7 +4,7 @@
   "description": "API server built using TypeScript with GraphQL",
   "main": "dist",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p ./tsconfig.json",
     "server:test": "TESTING=true tsc --watch & NODE_ENV=development nodemon dist",
     "test": "TESTING=true jest --runInBand",
     "dev": "tsc --watch & NODE_ENV=development nodemon dist",
