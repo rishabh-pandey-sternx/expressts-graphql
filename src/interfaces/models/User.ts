@@ -13,5 +13,3 @@ export interface IUser {
   deviceId: string;
 }
 export interface IUserNull {}
-
-export default IUser;

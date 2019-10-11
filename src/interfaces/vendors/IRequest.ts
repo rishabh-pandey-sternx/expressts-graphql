@@ -13,6 +13,7 @@ export interface IRequest extends Request {
   todo: ITodo;
   email: string;
   input: string;
+  updated_by: string;
   id: string;
   password: string;
   collaboraterId: string;

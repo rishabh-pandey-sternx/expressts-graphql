@@ -7,6 +7,7 @@
 import TodoModel from '../models/Todo';
 import { IRequest } from '../interfaces/vendors';
 import { ITodo, ITodoNull } from './../interfaces/models/Todo';
+import Notification from './Notify';
 
 class TodoController {
   /**
@@ -101,7 +102,9 @@ class TodoController {
 
   public static async getAllMine(user): Promise<[ITodo] | ITodoNull | Error> {
     try {
-      return await TodoModel.find({ collaborater_ids: user.id });
+      return await TodoModel.find({
+        $or: [{ owner_id: user.id }, { collaborater_ids: user.id }]
+      });
     } catch (error) {
       throw new Error(error);
     }
@@ -115,6 +118,7 @@ class TodoController {
 
   public static async addUser(req: IRequest): Promise<ITodo | Error> {
     try {
+      Notification.notifyUsers(req, 'Update');
       return await TodoModel.findByIdAndUpdate(req.id, {
         $push: { collaborater_ids: req.collaboraterId }
       });

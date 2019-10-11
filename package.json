@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "server:test": "TESTING=true tsc --watch & NODE_ENV=development nodemon dist",
-    "test": "TESTING=true jest",
+    "test": "TESTING=true jest --runInBand",
     "dev": "tsc --watch & NODE_ENV=development nodemon dist",
     "start:debug": "cross-env DEBUG=expressts-graphql:* yarn start",
     "lint": "./node_modules/.bin/tslint -c tslint.json 'src/**/**.ts'",
@@ -30,6 +30,7 @@
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "express-jwt": "^5.3.1",
+    "fcm-node": "^1.5.2",
     "firebase": "^7.1.0",
     "firebase-admin": "^8.6.0",
     "jsonwebtoken": "^8.5.1",

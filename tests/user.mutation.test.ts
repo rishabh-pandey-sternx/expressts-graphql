@@ -15,6 +15,7 @@ describe('Signup new user', () => {
         }`
     });
     const { data } = newUser;
+    process.env.Authorization = `Bearer ${data.data.signUp.token}`;
     expect(data).toMatchObject({
       data: {
         signUp: {
@@ -49,15 +50,16 @@ describe('Signup new user', () => {
   });
 
   test('Update user profile', async () => {
+    console.log(process.env.Authorization, 'process.env.Authorization');
     const updateProfile = await axios.post(
       `http://localhost:4040/graphql`,
       {
         query: `mutation {
-        updateProfile(
-          user:{fullname: "Geek Rishabh", email:"geekrishabh@gmail.com", password:"Password@07",deviceId:"Testing"}
+          updateProfile(
+          user:{fullname: "Geek Rishabh", email:"geekrishabh@gmail.com", password:"Password@07", deviceId: 'Testing'}
           ) {
             fullname
-            token
+            deviceId
             email
           }
         }`
@@ -65,8 +67,7 @@ describe('Signup new user', () => {
       {
         headers: {
           'Content-Type': 'application/json',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtzZGFkYWpiQGtoLmFzZGtzc24iLCJwYXNzd29yZCI6Imd5dXlsbiIsImlkIjoiNWQ5ZjM2M2I4OTQyMGFiZDNmMWZlZWEyIiwiaWF0IjoxNTcwNzgwNzg4LCJleHAiOjE1NzA4NjcxODh9.oI82QwUAnAXVm0VS1BvSxHDct6r0r4hcBlUT95r0Jfs'
+          Authorization: process.env.Authorization
         }
       }
     );

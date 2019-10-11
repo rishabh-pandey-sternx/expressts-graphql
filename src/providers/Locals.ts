@@ -19,6 +19,7 @@ class Locals {
     const port = process.env.PORT || 4040;
     const appSecret = process.env.APP_SECRET || 'ThisIsYourResponsibility!';
     const mongooseUrl = process.env.MONGOOSE_URL;
+    const serverKey = process.env.FIREBASE_SERVER_KEY || '';
     const maxParameterLimit = process.env.APP_MAX_PARAMETER_LIMIT || 5000;
 
     const name = process.env.APP_NAME || 'Express API Server';
@@ -32,6 +33,7 @@ class Locals {
     return {
       appSecret,
       apiPrefix,
+      serverKey,
       isCORSEnabled,
       jwtExpiresIn,
       logDays,

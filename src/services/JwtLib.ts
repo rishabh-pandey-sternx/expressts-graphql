@@ -5,11 +5,10 @@
  */
 
 import * as jwt from 'jsonwebtoken';
-import * as expressJwt from 'express-jwt';
+import { Request } from 'express';
 
 import Locals from '../providers/Locals';
 import { IRequest } from '../interfaces/vendors';
-import { Request } from 'express';
 
 class JwtLib {
   public static signIn(email, password, id): string {

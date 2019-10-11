@@ -14,9 +14,7 @@ export interface ITodo {
   title: string;
   completed: Completed;
   owner_id: string;
-  collaborater_ids?: [string];
+  collaborater_ids: [string];
 }
 
 export interface ITodoNull {}
-
-export default ITodo;

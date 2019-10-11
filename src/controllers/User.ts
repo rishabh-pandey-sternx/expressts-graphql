@@ -129,7 +129,7 @@ class UserController {
    */
   public static async update(req: IRequest): Promise<IUser | Error> {
     try {
-      return await UserModel.findOneAndUpdate(
+      const response = await UserModel.findOneAndUpdate(
         { email: req.user.email },
         {
           fullname: req.user.fullname || null,
@@ -137,6 +137,7 @@ class UserController {
           gender: req.user.gender || null
         }
       );
+      return response;
     } catch (error) {
       throw new Error(error);
     }
