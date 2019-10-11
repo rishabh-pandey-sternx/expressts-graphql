@@ -6,17 +6,8 @@
 
 import * as mongoose from 'mongoose';
 import * as bcrypt from 'bcrypt-nodejs';
-import * as JWT from 'jsonwebtoken';
-import * as Config from '../providers/Locals';
 
-import {
-  Typegoose,
-  prop,
-  staticMethod,
-  instanceMethod,
-  pre,
-  getModelForClass
-} from '@typegoose/typegoose';
+import { Typegoose, prop, staticMethod, pre } from '@typegoose/typegoose';
 
 export interface Credentials {
   email: string;

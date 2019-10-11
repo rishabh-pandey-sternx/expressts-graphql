@@ -12,7 +12,7 @@ class TodoController {
   /**
    * Create A New Task
    * @param req
-   * @returns {any}
+   * @returns {Promise<ITodo | Error> }
    */
 
   public static async create(req: IRequest): Promise<ITodo | Error> {
@@ -40,7 +40,7 @@ class TodoController {
   /**
    * Update Existing Task Based On Its Id
    * @param req
-   * @returns {any}
+   * @returns {Promise<ITodo | Error>}
    */
 
   public static async delete(req: IRequest): Promise<ITodo | Error> {
@@ -54,7 +54,7 @@ class TodoController {
   /**
    * Get All Tasks
    * @param req
-   * @returns {any}
+   * @returns {Promise<[ITodo] | ITodoNull | Error>}
    */
 
   public static async getAll(): Promise<[ITodo] | ITodoNull | Error> {
@@ -68,7 +68,7 @@ class TodoController {
   /**
    * Get One Task Based On Its Id
    * @param req
-   * @returns {any}
+   * @returns {Promise<ITodo | Error>}
    */
 
   public static async getOne(req: IRequest): Promise<ITodo | Error> {
@@ -82,7 +82,7 @@ class TodoController {
   /**
    * Get User's Owned Tasks
    * @param req
-   * @returns {any}
+   * @returns {Promise<[ITodo] | ITodoNull | Error>}
    */
 
   public static async getMine(user): Promise<[ITodo] | ITodoNull | Error> {
@@ -96,7 +96,7 @@ class TodoController {
   /**
    * Get User's Colloborated Tasks
    * @param req
-   * @returns {any}
+   * @returns {Promise<[ITodo] | ITodoNull | Error>}
    */
 
   public static async getAllMine(user): Promise<[ITodo] | ITodoNull | Error> {
@@ -110,7 +110,7 @@ class TodoController {
   /**
    * Add User As Collaborater in A Task
    * @param req
-   * @returns {any}
+   * @returns {Promise<ITodo | Error>}
    */
 
   public static async addUser(req: IRequest): Promise<ITodo | Error> {
@@ -126,7 +126,7 @@ class TodoController {
   /**
    * Remove User From A Colloborated Tasks
    * @param req
-   * @returns {any}
+   * @returns {Promise<ITodo | Error> }
    */
 
   public static async removeUser(req: IRequest): Promise<ITodo | Error> {

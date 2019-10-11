@@ -4,7 +4,6 @@ import * as dotenv from 'dotenv';
 import Express from './Express';
 import Log from '../middlewares/Log';
 import * as Database from './Database';
-import * as FirebaseAuth from './Firebase';
 
 class App {
   // clear out the console

@@ -18,7 +18,7 @@ class UserController {
    * @returns {Promise<IUser | Error> }
    */
 
-  public static async register(req: IRequest): Promise<IUser | Error> {
+  public static async register(req: IRequest): Promise<Object | IUser | Error> {
     let response: object = {};
     try {
       const user = await UserModel.findOne({
@@ -52,7 +52,7 @@ class UserController {
    * @returns {Promise<IUser | Error>}
    */
 
-  public static async login(req: IRequest): Promise<IUser | Error> {
+  public static async login(req: IRequest): Promise<Object | IUser | Error> {
     let response: object = {};
     try {
       const user = await UserModel.findOne({ email: req.email });

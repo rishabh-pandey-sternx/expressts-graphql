@@ -12,6 +12,7 @@ import schema from '../schemas/Schema';
 
 import apiRouter from './../routes/Api';
 import JwtLib from '../services/JwtLib';
+import { IUser } from '../interfaces/models/User';
 import Resolvers from '../resolvers';
 
 class Routes {

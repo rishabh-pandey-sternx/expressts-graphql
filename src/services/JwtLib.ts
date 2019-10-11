@@ -9,6 +9,7 @@ import * as expressJwt from 'express-jwt';
 
 import Locals from '../providers/Locals';
 import { IRequest } from '../interfaces/vendors';
+import { Request } from 'express';
 
 class JwtLib {
   public static signIn(email, password, id): string {
@@ -27,7 +28,7 @@ class JwtLib {
     return jwt.verify(token, Locals.config().appSecret);
   }
 
-  public static tokenFromHeaders(req: IRequest): string {
+  public static tokenFromHeaders(req: IRequest | Request): string {
     if (
       req.headers.authorization &&
       req.headers.authorization.split(' ')[0] === 'Bearer'

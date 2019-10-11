@@ -69,6 +69,7 @@ export default gql`
   }
 
   type Mutation {
+    dummyMutation(fullname: String, email: String): Greeting
     signUp(user: UserInfo): SingUpResult
     login(email: String!, password: String!): LoginResult
     updateProfile(user: UserInfo): User

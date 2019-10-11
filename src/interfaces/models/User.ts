@@ -10,6 +10,7 @@ export interface IUser {
   token?: string;
   fullname: string;
   gender: string;
+  deviceId: string;
 }
 export interface IUserNull {}
 

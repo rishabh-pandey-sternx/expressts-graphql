@@ -7,13 +7,13 @@ const Resolvers = {
   Mutation: {
     // Logging In A User
     login: async (parent, args, context, info) => {
-      const value = UserController.login(args);
-      console.log(value, 'value');
-      return value;
+      const LoginResult = UserController.login(args);
+      return LoginResult;
     },
     // Store Details Of New User
     signUp: async (parent, args, context, info) => {
-      await UserController.register(args);
+      const signUpResult = await UserController.register(args);
+      return signUpResult;
     },
     // Update User's Profile
     updateProfile: async (parent, args, context, info) => {
@@ -22,7 +22,8 @@ const Resolvers = {
           'Not Authenticated Please Provide Authorization Token'
         );
       }
-      return await UserController.update(args);
+      const updateResult = await UserController.update(args);
+      return updateResult;
     },
     // create new todo
     createTodo: async (parent, args, context, info) => {
@@ -70,6 +71,9 @@ const Resolvers = {
       }
       args.input['updated_by'] = context.user.id;
       return await TodoController.delete(args);
+    },
+    dummyMutation: (parent, args, context, info) => {
+      return { name: args.fullname, age: 23, profession: 'Dev', text: 'Hello' };
     }
   },
   Query: {
