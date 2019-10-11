@@ -31,10 +31,7 @@ const Resolvers = {
           'Not Authenticated Please Provide Authorization Token'
         );
       }
-      const req = {
-        ...args.input,
-        owner_id: context.user.id
-      };
+      args.input['owner_id'] = context.user.id;
 
       const created = await TodoController.create(args);
       return created;
@@ -46,6 +43,7 @@ const Resolvers = {
           'Not Authenticated Please Provide Authorization Token'
         );
       }
+      args.input['updated_by'] = context.user.id;
       return await TodoController.addUser(args);
     },
     // remove collaborater from todo list
@@ -53,6 +51,7 @@ const Resolvers = {
       if (!context.user) {
         throw new AuthenticationError('Not Authenticated');
       }
+      args.input['updated_by'] = context.user.id;
       return await TodoController.removeUser(args);
     },
     // updates the todo title and completed status
@@ -60,6 +59,7 @@ const Resolvers = {
       if (!context.user) {
         throw new AuthenticationError('Not Authenticated');
       }
+      args.input['updated_by'] = context.user.id;
       return await TodoController.update(args);
     },
 
@@ -68,6 +68,7 @@ const Resolvers = {
       if (!context.user) {
         throw new AuthenticationError('Not Authenticated');
       }
+      args.input['updated_by'] = context.user.id;
       return await TodoController.delete(args);
     }
   },
@@ -100,7 +101,7 @@ const Resolvers = {
           'Not Authenticated Please Provide Authorization Token'
         );
       }
-      await TodoController.getAll();
+      return await TodoController.getAll();
     },
     // gets all todos created by authenticated  user
     personalTodos: async (parent, args, context, info) => {

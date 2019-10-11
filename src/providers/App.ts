@@ -32,13 +32,6 @@ class App {
 
     Database.Database.init();
   }
-
-  // Loads the Firebase
-  // public loadFirebase(): void {
-  //   Log.info('Fireabse :: Booting @ Master...');
-
-  //   FirebaseAuth.init();
-  // }
 }
 
 export default new App();

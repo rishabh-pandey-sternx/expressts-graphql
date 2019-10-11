@@ -81,7 +81,7 @@ class UserController {
   /**
    * Get User By Id
    * @param req
-   * @returns {Promise<*>}
+   * @returns {Promise<IUser | Error>}
    */
 
   public static async getUserById(id): Promise<IUser | Error> {
@@ -95,7 +95,7 @@ class UserController {
   /**
    * Get All users
    * @param req
-   * @returns {Promise<*>}
+   * @returns {Promise<[IUser] | IUserNull | Error>}
    */
 
   public static async getAll(): Promise<[IUser] | IUserNull | Error> {
