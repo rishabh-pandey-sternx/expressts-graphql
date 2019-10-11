@@ -24,5 +24,11 @@
     "./node_modules/@types/dotenv/index.d.ts"
   ],
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "typings", "dist"]
+  // adding FirebaseNotification in exclude as it doesnot support ts
+  "exclude": [
+    "node_modules",
+    "typings",
+    "dist",
+    "src/services/FirebaseNotification.ts"
+  ]
 }

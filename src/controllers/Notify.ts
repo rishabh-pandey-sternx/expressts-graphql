@@ -27,8 +27,10 @@ class Notification {
     }
 
     try {
-      const userArray = await this.getNotificationUsers(todo, req.updated_by);
-      userArray.map(element => {
+      let userArray = await this.getNotificationUsers(todo, req.updated_by);
+      // let abc: IUserNull[];
+      // userArray = userArray ? userArray : abc;
+      userArray.forEach(element => {
         const message = {
           to: element.deviceId,
           title: type,
@@ -44,10 +46,10 @@ class Notification {
   public static async getNotificationUsers(
     req: ITodo | Error,
     updatedBy: string
-  ): Promise<[IUser]> {
+  ): Promise<IUser[] | IUserNull[]> {
     return new Promise((resolve, reject) => {
       try {
-        const userAray = [];
+        let userArray: IUser[] | IUserNull[] = [];
         let idArray = req['collaborater_ids'];
         let userModel_errorArray = [];
         if (req['updated_by'] === updatedBy) {
@@ -55,7 +57,7 @@ class Notification {
           idArray.map(async element => {
             try {
               const user_response = await UserModel.findById({ id: element });
-              userAray.push(userAray);
+              userArray.push(user_response);
             } catch (err) {
               console.log(
                 'getNotificationUsers: idArray: User Model API Error -->',
@@ -72,9 +74,10 @@ class Notification {
             userModel_errorArray
           );
           // Handle error
+          return reject('error');
         }
 
-        console.log('getNotificationUsers: userAray -->', userAray);
+        console.log('getNotificationUsers: userArray -->', userArray);
         const notifyAbleArray = idArray.filter(value => {
           if (value !== updatedBy) {
             return value;
@@ -87,7 +90,7 @@ class Notification {
         notifyAbleArray.map(async element => {
           try {
             const user_response = await UserModel.findById({ id: element });
-            userAray.push(userAray);
+            userArray.push(user_response);
           } catch (err) {
             console.log(
               'getNotificationUsers: notifyAbleArray: User Model API Error -->',
@@ -98,8 +101,9 @@ class Notification {
         });
         if (userModel_errorArray.length) {
           // Handle error
+          return reject('error');
         }
-        return resolve(userAray);
+        return resolve(userArray);
       } catch (error) {
         // throw new Error(error);
         return reject(error);

@@ -23,7 +23,7 @@ class Routes {
     return _express.use(`/${apiPrefix}`, apiRouter);
   }
 
-  public mount(): Application {
+  public mount(): ApolloServer {
     const server = new ApolloServer({
       introspection: true,
       playground: true,

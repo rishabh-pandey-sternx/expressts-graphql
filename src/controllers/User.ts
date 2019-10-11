@@ -39,7 +39,7 @@ class UserController {
 
       const result = await newUser.save();
       const token = jwtLib.signIn(req.user.email, req.user.password, result.id);
-      response = { ...result._doc, token, password: null };
+      response = { ...result['_doc'], token, password: null };
       return response;
     } catch (error) {
       throw new Error(error);
@@ -71,7 +71,7 @@ class UserController {
       }
 
       const token = jwtLib.signIn(user.email, req.password, user.id);
-      response = { token, password: null, ...user._doc };
+      response = { token, password: null, ...user['_doc'] };
       return response;
     } catch (err) {
       throw new Error(err);
