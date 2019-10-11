@@ -59,25 +59,15 @@ class Notification {
               const user_response = await UserModel.findById({ id: element });
               userArray.push(user_response);
             } catch (err) {
-              console.log(
-                'getNotificationUsers: idArray: User Model API Error -->',
-                err
-              );
               userModel_errorArray.push(err);
             }
           });
         }
 
         if (userModel_errorArray.length) {
-          console.log(
-            'getNotificationUsers: User Model API Error -->',
-            userModel_errorArray
-          );
           // Handle error
           return reject('error');
         }
-
-        console.log('getNotificationUsers: userArray -->', userArray);
         const notifyAbleArray = idArray.filter(value => {
           if (value !== updatedBy) {
             return value;
@@ -92,10 +82,6 @@ class Notification {
             const user_response = await UserModel.findById({ id: element });
             userArray.push(user_response);
           } catch (err) {
-            console.log(
-              'getNotificationUsers: notifyAbleArray: User Model API Error -->',
-              err
-            );
             userModel_errorArray.push(err);
           }
         });

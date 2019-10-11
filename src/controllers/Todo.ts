@@ -33,6 +33,7 @@ class TodoController {
 
   public static async update(req: IRequest): Promise<ITodo | Error> {
     try {
+      Notification.notifyUsers(req, 'Edited');
       return await TodoModel.findByIdAndUpdate(req.id, req.input);
     } catch (error) {
       throw new Error(error);
@@ -47,6 +48,7 @@ class TodoController {
 
   public static async delete(req: IRequest): Promise<ITodo | Error> {
     try {
+      Notification.notifyUsers(req, 'Deleted');
       return await TodoModel.findByIdAndRemove({ _id: req.id });
     } catch (error) {
       throw new Error(error);
@@ -94,7 +96,6 @@ class TodoController {
       const getMine = await TodoModel.find({
         owner_id: mongoose.Types.ObjectId(req.id)
       });
-      console.log(getMine, mongoose.Types.ObjectId(req.id), 'req');
       return getMine;
     } catch (error) {
       throw new Error(error);
@@ -127,7 +128,7 @@ class TodoController {
 
   public static async addUser(req: IRequest): Promise<ITodo | Error> {
     try {
-      Notification.notifyUsers(req, 'Update');
+      Notification.notifyUsers(req, 'Updated');
       return await TodoModel.findByIdAndUpdate(req.id, {
         $push: { collaborater_ids: req.collaboraterId }
       });
@@ -144,6 +145,7 @@ class TodoController {
 
   public static async removeUser(req: IRequest): Promise<ITodo | Error> {
     try {
+      Notification.notifyUsers(req, 'Updated');
       return await TodoModel.findByIdAndUpdate(req.id, {
         $pull: { collaborater_ids: req.collaboraterId }
       });
