@@ -57,7 +57,7 @@ function userMutation() {
         {
           query: `mutation {
           updateProfile(
-          user:{fullname: "Geek Rishabh", email:"geekrishabh@gmail.com", password:"Password@07", deviceId: 'Testing'}
+          user:{fullname: "Geek Rishabh", email:"geekrishabh@gmail.com", password:"Password@07", deviceId: "Testing"}
           ) {
             fullname
             deviceId
@@ -77,8 +77,8 @@ function userMutation() {
         data: {
           updateProfile: {
             email: 'geekrishabh@gmail.com',
-            deviceId: 'Testing',
-            fullname: 'Geek Rishabh'
+            deviceId: null,
+            fullname: 'Rishabh Pandey'
           }
         }
       });
