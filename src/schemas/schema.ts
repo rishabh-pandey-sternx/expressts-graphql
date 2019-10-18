@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-express';
 
-export default gql`
+export const schema = gql`
   input UserInfo {
     id: ID
     password: String!
@@ -80,3 +80,5 @@ export default gql`
     deleteTodo(id: ID!): Todo
   }
 `;
+
+export default schema;
