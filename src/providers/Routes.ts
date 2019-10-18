@@ -8,7 +8,7 @@ import { Application } from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import Locals from './Locals';
 import Log from '../middlewares/Log';
-import schema from '../schemas/Schema';
+import schema from '../schemas';
 
 import apiRouter from './../routes/Api';
 import JwtLib from '../services/JwtLib';
