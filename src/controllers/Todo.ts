@@ -77,7 +77,8 @@ class TodoController {
 
   public static async getOne(req: IRequest): Promise<ITodo | Error> {
     try {
-      return await TodoModel.findById(req.id);
+      const todo = await TodoModel.findById(mongoose.Types.ObjectId(req.id));
+      return todo;
     } catch (error) {
       throw new Error(error);
     }

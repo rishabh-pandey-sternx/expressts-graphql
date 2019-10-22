@@ -7,7 +7,7 @@ const Resolvers = {
   Mutation: {
     // Logging In A User
     login: async (parent, args, context, info) => {
-      const LoginResult = UserController.login(args);
+      const LoginResult = await UserController.login(args);
       return LoginResult;
     },
     // Store Details Of New User
@@ -69,7 +69,6 @@ const Resolvers = {
       if (!context.user) {
         throw new AuthenticationError('Not Authenticated');
       }
-      args.input['updated_by'] = context.user.id;
       return await TodoController.delete(args);
     },
     dummyMutation: (parent, args, context, info) => {
@@ -96,7 +95,7 @@ const Resolvers = {
           'Not Authenticated Please Provide Authorization Token'
         );
       }
-      await TodoController.getOne(args);
+      return await TodoController.getOne(args);
     },
     // gets all todos on the platform
     todos: async (parent, args, context, info) => {
