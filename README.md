@@ -92,11 +92,18 @@ docker run -p 4040:4040 express-graphql-todo
 
 ### EndPoint
 
+#### Local
+
 • Graphql Endpoint
 `http://localhost:4040/graphql/`
 
 • API Endpoint
 `http://localhost:4040/api/`
 
-### Live Demo
+#### Live Demo
+
+• Graphql Endpoint
 `https://expressts-graphql.herokuapp.com/graphql`
+
+• API Endpoint
+`https://expressts-graphql.herokuapp.com/api`
